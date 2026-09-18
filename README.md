@@ -4,8 +4,10 @@ Useful extra information on the status line.
 ## Components
 - **Symmetric Cursor Coordinates**: Display line and column number relative to the beginning/end of the file/line.
 ```vim
-%L %C: Displays the current line number relative to the beginning of the file, current column number relative to the beginning of the line.
-%-L %-C: Displays the current line number relative to the end of the file, current column number relative to the end of the line.
+%L: Displays current line number relative to the beginning of the file.
+%-L: Displays current line number relative to the end of the file.
+%C: Displays current column number relative to the beginning of the line.
+%-C: Displays current column number relative to the end of the line.
 ```
 
 - **Register Preview**: Display given register index/content. 
