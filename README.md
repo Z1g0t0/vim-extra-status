@@ -32,7 +32,7 @@ Displays line and column number relative to the beginning/end of the file/line.
 
 Displays given register index/content. 
 
-- %<0-9a-z_>: Displays content of a register(%_ = unnamed, %<0-9> numbered, %<a-z> named).
+- %<0-9a-z_>: Displays content of a register(%_ = unnamed, %<0-9> numbered, %\<a-z> named).
 
 #### Examples:
 
