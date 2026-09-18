@@ -1,6 +1,22 @@
 # vim-extra-status
 Useful extra information on the status line.
 
+## Installation
+[vim-plug](https://github.com/junegunn/vim-plug):
+```vim
+Plug 'Z1g0t0/vim-extra-status'
+```
+
+[packer.nvim](https://github.com/wbthomason/packer.nvim):
+```lua
+use 'Z1g0t0/vim-extra-status'
+```
+
+[lazy.nvim](https://github.com/folke/lazy.nvim)
+```lua
+{ 'Z1g0t0/vim-extra-status' }
+```
+
 ## Components
 
 ### **Symmetric Cursor Coordinates**
@@ -90,10 +106,4 @@ let g:format = '(%L,%C)%<{%_}%#WarningMsg#(%W)%*%=[%H:%M:%S]'
 ```
 ```
 (-8,1){...hilighted in WarningMsg color and time is right-aligned.↵}(✓)                       [19:45:26]
-```
-
-## Installation
-Using [vim-plug](https://github.com/junegunn/vim-plug):
-```vim
-Plug 'username/statusline.vim'
 ```
