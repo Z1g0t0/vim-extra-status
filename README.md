@@ -2,33 +2,55 @@
 Useful extra information on the status line.
 
 ## Components
-- **Symmetric Cursor Coordinates**: Display line and column number relative to the beginning/end of the file/line.
-```vim
-%L: Displays current line number relative to the beginning of the file.
-%-L: Displays current line number relative to the end of the file.
-%C: Displays current column number relative to the beginning of the line.
-%-C: Displays current column number relative to the end of the line.
+
+### **Symmetric Cursor Coordinates**
+
+Displays line and column number relative to the beginning/end of the file/line.
+
+- %L: Displays current line number relative to the beginning of the file.
+- %-L: Displays current line number relative to the end of the file.
+- %C: Displays current column number relative to the beginning of the line.
+- %-C: Displays current column number relative to the end of the line.
+
+### **Register Preview**
+
+Displays given register index/content. 
+
+- %<0-9a-z_>: Displays the index and/or content of a register(%_ = unnamed), truncated if over g:register_width characters(36 by default).
+
+#### Examples:
+
+{Unnamed: %_} 
+```
+{Unnamed: <register(%_ = unnamed), truncated if over g:register_width characters(36 by default).}
+``` 
+
+\[1]: %1 
+``` 
+[1]: < of a register(%_ = unnamed), truncated if over g:register_width characters(36 by default).
+```
+A="%a"
+```
+A=<ent of a register(%_ = unnamed), truncated if over g:register_width characters(36 by default).
+```
+### **Write Information**
+
+Display the last modified time of the file and its current status(modified/unchanged).
+
+ - %H:%M:%S Displays the last modified time of the file as HH:MM:SS.
+ - %W Displays current state.
+
+[%H:%M:%S]\(%W)
+```
+[11:22:33](*)
 ```
 
-- **Register Preview**: Display given register index/content. 
-```vim
-%<0-9a-z_>: Displays the index and/or content of a register(%_ = unnamed), truncated if over g:register_width characters(36 by default).
-Examples: 
-{Unnamed: %_} -> Output: "{Unnamed: <unnamed register's content>}"
-[1]: %1 -> Output: "{[1]: <1 register's content>}"
-A=%a -> Output: "A=<a register's content>"
-```
+### **Custom Format and Symbols**
 
-- **Write Information**: Display the last modified time of the file and its current status(modified/unchanged).
-```vim
-%H:%M:%S Displays the last modified time of the file as HH:MM:SS.
-%W Displays current state.
-Example: [%H:%M:%S](%W) -> Output: "[11:22:33](*)"
-```
+Customizable format and symbols order.
 
-- **Custom Format and Symbols**: Customizable format and symbols order.
-```vim
 Defaults: 
+```vim
 let g:register_width = 36       " Maximum characters register's content displays(truncates if over)
 let g:register_reserve = 24     " Reserved width of the window which the register's content doesn't go over)
 let g:register_nl = '↵'         " Register's content newline alias(\r\n = ↵)
@@ -43,20 +65,29 @@ let g:register_trunc = [0, '...']   " [<-1, 0, 1>, <symbol>]
 "                                     1 = Truncate at the end...
 "                                     <symbol> = String placeholder
 let g:format = "(%-L,%C){%_}[%H:%M:%S]<%W>" 
-"(-24, 0){Defaults:↵let g:re...{%_}[%H:%M:%S]<%W>"[11:22:33]<*>
+```
+```
+(-24, 0){Defaults:↵let g:re...{%_}[%H:%M:%S]<%W>}[11:22:33]<*>
 ```
 
-- **Native Features**: Vim's native layout items can be used to further customize the format.
-```vim
-%= Right-align: everything after it is pushed to the window edge.
-%< Truncation point: By default when the statusline is too long for the window, it's content is left truncated/right focused. With this everything before it is kept.
-%#<hi_group>#: Vim color/highlight groups, e.g. WarningMsg, ErrorMsg, ModeMsg...
-%* Resets the highlight back to the default.
+### **Native Features**
 
-Example: 
-"Always show line-column, truncated unnamed buffer(left) modified buffer component highlighted in WarningMsg color and clock is right-aligned.
+Vim's native layout items can be used to further customize the format.
+
+ - **%=**: Right-align everything after it is pushed to the window edge.
+ - **%<**: By default statusline is left truncated/right focused. This sets the truncation point.
+ - **%#<hi_group>#**: Vim color/highlight groups, e.g. *WarningMsg*, *ErrorMsg*, *ModeMsg*...
+ - **%\***: Resets the highlight back to the default.
+
+Example:
+
+```vim
+"Always show line, column, unnamed buffer truncated to the left, modified status highlighted in WarningMsg color and last write right-aligned.
 let g:format = '(%L,%C)%<{%_}%#WarningMsg#(%W)%*%=[%H:%M:%S]'
-Output:(-9,1){...hilighted in WarningMsg color and clock is right-aligned.↵}(✓)                   [19:45:26]
+```
+```
+(-8,1){...hilighted in WarningMsg color and time is right-aligned.↵}(✓)                        [19:45:26]
+```
 
 ## Installation
 Using [vim-plug](https://github.com/junegunn/vim-plug):
