@@ -29,7 +29,7 @@ Displays given register index/content.
 ``` 
 [1]: < of a register(%_ = unnamed), truncated if over g:register_width characters(36 by default).
 ```
-A="%a"
+A=%a
 ```
 A=<ent of a register(%_ = unnamed), truncated if over g:register_width characters(36 by default).
 ```
@@ -37,8 +37,8 @@ A=<ent of a register(%_ = unnamed), truncated if over g:register_width character
 
 Display the last modified time of the file and its current status(modified/unchanged).
 
- - %H:%M:%S Displays the last modified time of the file as HH:MM:SS.
- - %W Displays current state.
+ - %H %M %S: Displays the last modified time of the file as HH MM SS.
+ - %W: Displays current state.
 
 [%H:%M:%S]\(%W)
 ```
@@ -52,25 +52,27 @@ Customizable format and symbols order.
 Defaults: 
 ```vim
 let g:register_width = 36       " Maximum characters register's content displays(truncates if over)
-let g:register_reserve = 24     " Reserved width of the window which the register's content doesn't go over)
+let g:register_reserve = 24     " Reserved width which the register's content doesn't go over)
 let g:register_nl = '↵'         " Register's content newline alias(\r\n = ↵)
 let g:register_tab = '➜'       " Register's content tab alias(\t = ➜)
 let g:register_replace = ['\s\+', ' ']  " Custom register's content regex replace
-let g:modified_msg = '*'                " Modified/Unsaved changes symbol(*)
-let g:unmodified_msg = '✓'              " Unmodified/Saved symbol(✓)
+let g:modified_msg = '*'                " Modified/Unsaved changes message(*)
+let g:unmodified_msg = '✓'              " Unmodified/Saved message(✓)
+
 " Truncate register's content display at the beginning with "..."
 let g:register_trunc = [0, '...']   " [<-1, 0, 1>, <symbol>]
 "                                     -1 = ...Truncate at the beginning.
 "                                     0 = Truncate in ... the middle.
 "                                     1 = Truncate at the end...
 "                                     <symbol> = String placeholder
+
 let g:format = "(%-L,%C){%_}[%H:%M:%S]<%W>" 
 ```
 ```
 (-24, 0){Defaults:↵let g:re...{%_}[%H:%M:%S]<%W>}[11:22:33]<*>
 ```
 
-### **Native Features**
+### **Vim's Native Features**
 
 Vim's native layout items can be used to further customize the format.
 
@@ -82,11 +84,12 @@ Vim's native layout items can be used to further customize the format.
 Example:
 
 ```vim
-"Always show line, column, unnamed buffer truncated to the left, modified status highlighted in WarningMsg color and last write right-aligned.
+" Always show line, column, unnamed buffer truncated to the left.
+" Modified buffer status highlighted in WarningMsg color and last write right-aligned.
 let g:format = '(%L,%C)%<{%_}%#WarningMsg#(%W)%*%=[%H:%M:%S]'
 ```
 ```
-(-8,1){...hilighted in WarningMsg color and time is right-aligned.↵}(✓)                        [19:45:26]
+(-8,1){...hilighted in WarningMsg color and time is right-aligned.↵}(✓)                       [19:45:26]
 ```
 
 ## Installation
