@@ -19,6 +19,7 @@ target/
 .cache/
 .env
 .env.*
+.gitignore
 .metadata/
 !.env.example
 !.env.template
