@@ -10,7 +10,7 @@
 "   %=           native: everything after it is right-aligned
 "   %<           native: truncation point (left of it is kept on overflow)
 "   %*           native: reset highlight after a %#Group# region
-"   Search for +1 and switch comment if you want %-L or %-C to have the last line/column as 1 instead of 0
+"   Search for -1 and switch comment if you want %-L or %-C to have the last line/column as 1 instead of 0
 
 let s:default_format = '(%-L,%C){%_}[%H:%M:%S]<%W>'
 
@@ -158,14 +158,14 @@ function! BuildStatusline(fmt)
         endif
 
         if l:rest =~# '^%-L' || l:rest =~# '^%-l'
-            let l:out .= '%{line(''.'')-line(''$'')}'
-            "let l:out .= '%{line(''.'')-line(''$'')+1}'
+            "let l:out .= '%{line(''.'')-line(''$'')}'
+            let l:out .= '%{line(''.'')-line(''$'')-1}'
             let l:i += 3
             continue
         endif
         if l:rest =~# '^%-C' || l:rest =~# '^%-c'
-            let l:out .= '%{col(''.'')-col(''$'')}'
-            "let l:out .= '%{col(''.'')-col(''$'')+1}'
+            "let l:out .= '%{col(''.'')-col(''$'')}'
+            let l:out .= '%{col(''.'')-col(''$'')-1}'
             let l:i += 3
             continue
         endif

@@ -92,8 +92,8 @@ let g:format = "(%-L,%C){%_}[%H:%M:%S]<%W>"
 
 Vim's native layout items can be used to further customize the format.
 
- - **%=**: Right-align everything after it is pushed to the window edge.
  - **%<**: By default statusline is left truncated/right focused. This sets the truncation point.
+ - **%=**: Right alignenment point(pushes whats after it to the right).
  - **%#<hi_group>#**: Vim color/highlight groups, e.g. *WarningMsg*, *ErrorMsg*, *ModeMsg*...
  - **%\***: Resets the highlight back to the default.
 
