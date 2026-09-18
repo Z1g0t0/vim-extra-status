@@ -2,7 +2,7 @@
 Useful extra information on the status line.
 
 ## Components
-- **Symmetric Cursor Coordinates**: Able to line and column number relative to the beggining/end of the file/line.
+- **Symmetric Cursor Coordinates**: Display line and column number relative to the beggining/end of the file/line.
 ```vim
 %L %C: Displays the current line number relative to the beginning of the file, current column number relative to the beginning of the line.
 %-L %-C: Displays the current line number relative to the end of the file, current column number relative to the end of the line.
